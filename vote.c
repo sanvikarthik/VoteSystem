@@ -23,7 +23,6 @@ void update_voter_record(char *id);
 void record_vote(int option, int *vote_counts);
 void write_results_to_file(int *vote_counts);
 void encryptDecryptFile(int mode);
-void vote();
 
 int main()
 {
@@ -46,7 +45,7 @@ int main()
     }
     if (strcmp(username, "admin") == 0 && strcmp(password, "admin123") == 0)
     {
-        printf("The data is decrypted.\n");
+        printf("The data is processed.\n");
         encryptDecryptFile(2);
         exit(0);
     }
@@ -80,11 +79,12 @@ int main()
             else
             {
                 printf("\nYou are not eligible to vote.\n");
-                exit(1);
+                break;
             }
         }
         else
         {
+            printf("Wrong username or password.\n");
             break;
         }
     }
@@ -95,86 +95,6 @@ int main()
     return 0;
 }
 
-// int main()
-// {
-//     int i, option, vote_counts[5] = {0};
-
-//     register_voters();
-
-//     char username[20], password[20];
-//     int op;
-//     printf("Welcome to the Online Voting System!\n");
-//     while (1)
-//     {
-//         printf("Pick the choice: ");
-//         printf("\n1.Vote\n2.Encrypt\n3.Decrypt\n4.Exit\n");
-//         scanf("%d", &op);
-//         switch (op)
-//         {
-//         case 1:
-//             vote();
-//             break;
-
-//         case 2:
-//             encryptDecryptFile(1);
-//             break;
-//         case 3:
-//             encryptDecryptFile(2);
-//             break;
-//         default:
-//             exit(0);
-//         }
-//     }
-// }
-
-void vote()
-{
-    int i, option, vote_counts[5] = {0};
-
-    register_voters();
-
-    char username[20], password[20];
-    int finished = 0, op;
-
-    printf("Please enter your username: ");
-    scanf("%s", username);
-    printf("Please enter your password: ");
-    scanf("%s", password);
-    if (strcmp(username, "u") == 0 && strcmp(password, "p") == 0)
-    {
-        printf("\nWelcome, %s!\n", username);
-        finished = 1;
-    }
-
-    // Verify login credentials
-    printf("Please enter your ID number: ");
-    char id[MAX_ID_LEN];
-    scanf("%s", id);
-
-    // Check voter eligibility
-    if (check_eligibility(id) == 1)
-    {
-        printf("\nYou are eligible to vote. Please select your candidate:\n");
-        printf("1. Candidate A\n2. Candidate B\n3. Candidate C\n4. Candidate D\n5. Candidate E\n");
-        scanf("%d", &option);
-
-        // Record vote
-        record_vote(option, vote_counts);
-
-        // Update voter record
-        update_voter_record(id);
-
-        printf("Thank you for voting!\n");
-    }
-    else
-    {
-        printf("\nYou are not eligible to vote.\n");
-        exit(1);
-    }
-
-    // Write results to file
-    write_results_to_file(vote_counts);
-}
 
 void encryptDecryptFile(int mode)
 {
