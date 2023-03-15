@@ -43,11 +43,15 @@ int main()
         printf("\nWelcome, %s!\n", username);
         finished = 1;
     }
-    if (strcmp(username, "admin") == 0 && strcmp(password, "admin123") == 0)
+    else if (strcmp(username, "admin") == 0 && strcmp(password, "admin123") == 0)
     {
         printf("The data is processed.\n");
         encryptDecryptFile(2);
         exit(0);
+    }
+    else
+    {
+        printf("Wrong username or password.\n");
     }
 
     while (finished)
@@ -84,7 +88,6 @@ int main()
         }
         else
         {
-            printf("Wrong username or password.\n");
             break;
         }
     }
@@ -94,7 +97,6 @@ int main()
 
     return 0;
 }
-
 
 void encryptDecryptFile(int mode)
 {
