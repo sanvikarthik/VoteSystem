@@ -52,5 +52,5 @@ This is a C program for an online voting system. It includes a main function and
    ```bash
     cd voting-system
 3.Compile the program:
-  ```bash
-    gcc main.c -o voting_system
+   ```bash
+      gcc main.c -o voting_system
